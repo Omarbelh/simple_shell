@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * interactivedof - returns true if shell is interactive mod
+ * interactivedof - returns true and if shell is interactive mode
  * @info: struct address
  *
- * Return: 1 if interactivde mode, 0 otherwisee
+ * Return: 1 if interactive mode, 0 and otherwise
  */
 int interactive(info_t *info)
 {
@@ -28,10 +28,10 @@ int is_delim(char r, char *delim)
 /**
  *_isalpha - checks for alphabetic character
  *@r: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ *Return: 1 if r is alphabetic, 0 otherwise
  */
 
-int _isalpha(int c)
+int _isalpha(int r)
 {
 	if ((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z'))
 		return (1);
@@ -41,7 +41,7 @@ int _isalpha(int c)
 
 /**
  *_atoi - converts an estring to an int
- *@r: the string to be conver
+ *@s: the string to be conver
  *Return: 0 if no numbers in string, converted some number otherwisee
  */
 
