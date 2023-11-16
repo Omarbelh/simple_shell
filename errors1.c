@@ -2,23 +2,23 @@
 
 /**
  * _erratoi - converts a string to an integer
- * @customStr: the string to be converted
+ * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _erratoi(char *customStr)
+int _erratoi(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
-	if (*customStr == '+')
-		customStr++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  customStr[i] != '\0'; i++)
+	if (*s == '+')
+		s++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  s[i] != '\0'; i++)
 	{
-		if (customStr[i] >= '0' && customStr[i] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			result *= 10;
-			result += (customStr[i] - '0');
+			result += (s[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -30,30 +30,30 @@ int _erratoi(char *customStr)
 
 /**
  * print_error - prints an error message
- * @customInfo: the parameter & return info struct
- * @customEstr: string containing specified error type
+ * @info: the parameter & return info struct
+ * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void print_error(info_t *customInfo, char *customEstr)
+void print_error(info_t *info, char *estr)
 {
-	_eputs(customInfo->fname);
+	_eputs(info->fname);
 	_eputs(": ");
-	print_d(customInfo->line_count, STDERR_FILENO);
+	print_d(info->line_count, STDERR_FILENO);
 	_eputs(": ");
-	_eputs(customInfo->argv[0]);
+	_eputs(info->argv[0]);
 	_eputs(": ");
-	_eputs(customEstr);
+	_eputs(estr);
 }
 
 /**
  * print_d - function prints a decimal (integer) number (base 10)
- * @customInput: the input
- * @fd: the file descriptor to write to
+ * @input: the input
+ * @fd: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int print_d(int customInput, int fd)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
@@ -61,14 +61,14 @@ int print_d(int customInput, int fd)
 
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
-	if (customInput < 0)
+	if (input < 0)
 	{
-		_abs_ = -customInput;
+		_abs_ = -input;
 		__putchar('-');
 		count++;
 	}
 	else
-		_abs_ = customInput;
+		_abs_ = input;
 	current = _abs_;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
@@ -123,18 +123,18 @@ char *convert_number(long int num, int base, int flags)
 
 /**
  * remove_comments - function replaces first instance of '#' with '\0'
- * @customBuf: address of the string to modify
+ * @buf: address of the string to modify
  *
  * Return: Always 0;
  */
-void remove_comments(char *customBuf)
+void remove_comments(char *buf)
 {
 	int i;
 
-	for (i = 0; customBuf[i] != '\0'; i++)
-		if (customBuf[i] == '#' && (!i || customBuf[i - 1] == ' '))
+	for (i = 0; buf[i] != '\0'; i++)
+		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
 		{
-			customBuf[i] = '\0';
+			buf[i] = '\0';
 			break;
 		}
 }
